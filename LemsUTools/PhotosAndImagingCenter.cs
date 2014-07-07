@@ -275,9 +275,14 @@ namespace LemsUTools
         }
         public byte[] GetBytesFromImage(System.Drawing.Image imag)
         {
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            imag.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            return ms.ToArray();
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                imag.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+
+          
+            
 
         }
         public System.IO.MemoryStream GetMemoryStreamFromImage(System.Drawing.Image img)
